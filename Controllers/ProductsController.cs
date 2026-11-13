@@ -16,7 +16,6 @@ namespace p48_lessons_asp.Controllers
             _dataContext = dataContext;
         }
 
-        // Допоміжний метод для уніфікованого створення стандартної відповіді
         private IActionResult CreateResponse(int statusCode, string message, object? data = null)
         {
             return StatusCode(statusCode, new ResponseModel<object>
@@ -27,7 +26,6 @@ namespace p48_lessons_asp.Controllers
             });
         }
 
-        // 1. ОТРИМАННЯ ТІЛЬКИ НЕ ВИДАЛЕНИХ ТОВАРІВ
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
@@ -55,7 +53,6 @@ namespace p48_lessons_asp.Controllers
             }
         }
 
-        // 2. СТВОРЕННЯ ТОВАРУ (POST)
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductModel model)
         {
@@ -91,7 +88,6 @@ namespace p48_lessons_asp.Controllers
             }
         }
 
-        // 3. ПОВНЕ РЕДАГУВАННЯ (PUT)
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductModel model)
         {
@@ -122,7 +118,6 @@ namespace p48_lessons_asp.Controllers
             }
         }
 
-        // 4. ЧАСТКОВЕ РЕДАГУВАННЯ (PATCH)
         [HttpPatch("{id}")]
         public async Task<IActionResult> PatchProduct(Guid id, [FromBody] PatchProductModel model)
         {
@@ -153,7 +148,6 @@ namespace p48_lessons_asp.Controllers
             }
         }
 
-        // 5. М'ЯКЕ ВИДАЛЕННЯ (Soft Delete)
         [HttpDelete("soft/{id}")]
         public async Task<IActionResult> SoftDeleteProduct(Guid id)
         {
@@ -176,7 +170,6 @@ namespace p48_lessons_asp.Controllers
             }
         }
 
-        // 6. ПОВНЕ ВИДАЛЕННЯ (Hard Delete)
         [HttpDelete("hard/{id}")]
         public async Task<IActionResult> HardDeleteProduct(Guid id)
         {
